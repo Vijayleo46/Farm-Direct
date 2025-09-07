@@ -1,0 +1,180 @@
+{% include 'ad/adminheader.html' %}
+
+<style>
+  /* General Body Styling */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Main Container */
+  .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Page Title */
+  .page-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+
+  /* Table Wrapper for Responsiveness */
+  .table-wrapper {
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+  }
+
+  /* Main Complaint Table Styling */
+  .complaint-table {
+    width: 100%;
+    border-collapse: collapse; /* Removes space between cells */
+    margin: auto;
+  }
+
+  .complaint-table th,
+  .complaint-table td {
+    padding: 15px 12px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .complaint-table thead {
+    background-color: #34495e;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .complaint-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .complaint-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .complaint-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .complaint-table tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+
+  /* Styling for user info and complaint text */
+  .complaint-table .user-name {
+      font-weight: 500;
+      color: #2980b9;
+  }
+  .complaint-table .complaint-text {
+      max-width: 300px; /* Limits width to prevent long lines */
+      white-space: normal;
+  }
+
+  /* Status Badges */
+  .status-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+  .status-pending {
+    background-color: #f39c12; /* Orange */
+  }
+
+  .status-replied {
+    background-color: #27ae60; /* Green */
+  }
+
+  /* Reply Form Styling */
+  .reply-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical; /* Allow vertical resize only */
+    margin-bottom: 8px;
+  }
+
+  .reply-form button {
+    background-color: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+
+  .reply-form button:hover {
+    background-color: #2980b9;
+  }
+
+</style>
+
+<div class="container">
+  <h2 class="page-title">All Complaints</h2>
+
+  <div class="table-wrapper">
+    <table class="complaint-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>User</th>
+          <th>Complaint</th>
+          <th>Status</th>
+          <th>Reply</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in complaints %}
+          <tr>
+            <td>{{ c.date }}</td>
+            <td class="user-name">{{ c.login.username }}</td>
+            <td class="complaint-text">{{ c.complaints }}</td>
+            <td>
+              <span class="status-badge {% if c.status == 'pending' %}status-pending{% else %}status-replied{% endif %}">
+                {{ c.status }}
+              </span>
+            </td>
+            <td>
+              {% if c.status == "pending" %}
+                <form method="post" class="reply-form">
+                  {% csrf_token %}
+                  <input type="hidden" name="cid" value="{{ c.id }}">
+                  <textarea name="reply" rows="3" placeholder="Write your reply..." required></textarea>
+                  <button type="submit" name="submit">Send Reply</button>
+                </form>
+              {% else %}
+                {{ c.reply }}
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5" style="text-align:center; padding: 20px;">No complaints found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

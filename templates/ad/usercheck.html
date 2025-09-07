@@ -1,0 +1,44 @@
+  {%include 'ad/adminheader.html'%}
+
+<h2 style="text-align:center;">Manage Users (Block / Unblock)</h2>
+
+<div class="container my-5">
+  <div class="row g-4">
+    {% for i in users %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border-0 p-3">
+        <h5 class="card-title text-primary">{{ i.name }}</h5>
+        <p><strong>Place:</strong> {{ i.place }}</p>
+        <p><strong>Phone:</strong> {{ i.phone }}</p>
+        <p><strong>Email:</strong> {{ i.email }}</p>
+        <p><strong>District:</strong> {{ i.district }}</p>
+
+        <p><strong>Status:</strong>
+          <p class="mb-3">
+              {% if i.status == 'blocked' %}
+                <span class="badge bg-success">{{ i.status }}</span>
+              {% elif i.status == 'unblocked' %}
+                <span class="badge bg-danger">{{ i.status }}</span>
+              {% else %}
+                <span class="badge bg-secondary">Pending</span>
+              {% endif %}
+            </p>
+            {{ i.status|title }}
+          </span>
+        </p>
+
+        <div class="d-flex gap-2">
+          {% if i.blocked %}
+            <a href="/blocked/{{ i.id }}" class="btn btn-outline-danger btn-sm w-100">Block</a>
+          {% else %}
+            <a href="/unblocked/{{ i.id }}" class="btn btn-outline-success btn-sm w-100">Unblock</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+      {% include 'footer.html' %}

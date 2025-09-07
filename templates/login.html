@@ -1,0 +1,83 @@
+{% include 'publicheader.html' %}
+
+<style>
+  body {
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); /* Strong farmer green */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+
+  .login-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 28px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+  }
+
+  .form-control {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .form-control:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 6px rgba(46, 125, 50, 0.6);
+  }
+
+  .btn-custom {
+    background: #2e7d32; /* Admin green */
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s;
+    width: 100%;
+  }
+
+  .btn-custom:hover {
+    background: #1b5e20; /* Darker farmer green */
+  }
+</style>
+
+<div class="login-container">
+  <div class="login-card">
+    <h3 class="text-center fw-bold mb-4">Admin Login</h3>
+    <form method="post" onsubmit="return validateForm()">
+      <div class="mb-3">
+        <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+      </div>
+      <button type="submit" name="submit" class="btn btn-custom">Login</button>
+    </form>
+  </div>
+</div>
+
+<script>
+function validateForm() {
+    var username = document.getElementById("username").value.trim();
+    var password = document.getElementById("password").value.trim();
+
+    if (username === "") {
+        alert("Please enter your username");
+        return false;
+    }
+    if (password === "") {
+        alert("Please enter your password");
+        return false;
+    }
+    return true;
+}
+</script>

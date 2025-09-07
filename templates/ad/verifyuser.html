@@ -1,0 +1,47 @@
+{% include 'ad/adminheader.html' %}
+
+<h2 class="text-center my-4 text-success fw-bold">🌱 Verify Users</h2>
+
+<div class="container my-5">
+  <div class="row g-4">
+    {% for i in users %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        
+        <!-- User Photo -->
+        <img src="/static/media/{{i.photo}}" class="card-img-top" alt="{{ i.name }}" style="height:250px; object-fit:cover;">
+
+        <div class="card-body p-4" style="background: #f8fff4;">
+          <h5 class="card-title text-success fw-bold">{{ i.name }}</h5>
+          <p class="mb-1"><i class="fas fa-map-marker-alt text-danger"></i> <strong>Place:</strong> {{ i.place }}</p>
+          <p class="mb-1"><i class="fas fa-phone text-primary"></i> <strong>Phone:</strong> {{ i.phone }}</p>
+          <p class="mb-1"><i class="fas fa-envelope text-warning"></i> <strong>Email:</strong> {{ i.email }}</p>
+          
+          <!-- Status Badge -->
+          <p class="mt-2">
+            <strong>Status:</strong>
+            {% if i.status == 'accepted' %}
+              <span class="badge bg-success px-3 py-2">Accepted</span>
+            {% elif i.status == 'rejected' %}
+              <span class="badge bg-danger px-3 py-2">Rejected</span>
+            {% else %}
+              <span class="badge bg-secondary px-3 py-2">Pending</span>
+            {% endif %}
+          </p>
+
+          <!-- Accept/Reject Buttons -->
+          <div class="d-flex gap-2 mt-3">
+            {% if i.status != 'accepted' %}
+            <a href="/uaccepted/{{i.id}}" class="btn btn-success w-50 rounded-pill shadow-sm">Accept</a>
+            {% endif %}
+            {% if i.status != 'rejected' %}
+            <a href="/urejected/{{i.id}}" class="btn btn-danger w-50 rounded-pill shadow-sm">Reject</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+

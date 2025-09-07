@@ -1,0 +1,37 @@
+      {% include 'adminheader.html' %}
+
+<h2 style="text-align:center;">Verify Delivery Staff</h2>
+<div class="container my-5">
+  <div class="row g-4">
+    {% for i in staff %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card p-3 shadow">
+        <h5>{{ i.name }}</h5>
+        <p><strong>Place:</strong> {{ i.place }}</p>
+        <p><strong>Phone:</strong> {{ i.phone }}</p>
+        <p><strong>Email:</strong> {{ i.email }}</p>
+        <p><strong>Status:</strong>{{ i.status}}
+              <p class="mb-3">
+              <strong>Status:</strong>
+              {% if i.status == 'accepted' %}
+                <span class="badge bg-success">{{ i.status }}</span>
+              {% elif i.status == 'rejected' %}
+                <span class="badge bg-danger">{{ i.status }}</span>
+              {% else %}
+                <span class="badge bg-secondary">Pending</span>
+              {% endif %}
+            </p>
+        <div class="d-flex gap-2">
+          {% if i.status != 'accepted' %}
+          <a href="/acceptdelivery/{{i.id}}" class="btn btn-success btn-sm w-100">Accept</a>
+          {% endif %}
+          {% if i.status != 'rejected' %}
+          <a href="/rejectdelivery/{{i.id}}" class="btn btn-danger btn-sm w-100">Reject</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+

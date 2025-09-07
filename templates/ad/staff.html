@@ -1,0 +1,44 @@
+
+{% include 'ad/adminheader.html' %}
+<h2 style="text-align:center;">Manage Delivery Staff (Block / Unblock)</h2>
+
+<div class="container my-5">
+  <div class="row g-4">
+    {% for i in staff %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border-0 p-3">
+        <h5 class="card-title text-primary">{{ i.name }}</h5>
+        <p><strong>Place:</strong> {{ i.place }}</p>
+        <p><strong>Phone:</strong> {{ i.phone }}</p>
+        <p><strong>Email:</strong> {{ i.email }}</p>
+        <p><strong>District:</strong> {{ i.district }}</p>
+
+        <p><strong>Status:</strong>
+          {% if i.status == 'blocked' %}
+            <span class="badge bg-danger">Blocked</span>
+          {% else %}
+            <span class="badge bg-success">Active</span>
+          {% endif %}
+        </p>
+
+        <p><strong>Blocked:</strong>
+          {% if i.blocked %}
+            <span class="badge bg-danger">Yes</span>
+          {% else %}
+            <span class="badge bg-success">No</span>
+          {% endif %}
+        </p>
+
+        <div class="d-flex gap-2">
+          {% if i.blocked %}
+            <a href="/unblockdeliverystaff/{{ i.id }}" class="btn btn-outline-success btn-sm w-100">Unblock</a>
+          {% else %}
+            <a href="/blockdeliverystaff/{{ i.id }}" class="btn btn-outline-danger btn-sm w-100">Block</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+

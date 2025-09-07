@@ -1,0 +1,156 @@
+{% include 'ad/adminheader.html' %}
+
+<style>
+  /* --- Farm Direct Theme (Consistent with other admin pages) --- */
+
+  body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #F9F9F7; /* A very light, natural off-white */
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Main Container */
+  .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e5e5;
+  }
+
+  /* Page Title */
+  .page-title {
+    text-align: center;
+    color: #2E7D32; /* A deep, natural green */
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+
+  /* Table Wrapper for Responsiveness */
+  .table-wrapper {
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+  }
+
+  /* Main Report Table Styling */
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: auto;
+  }
+
+  .report-table th,
+  .report-table td {
+    padding: 15px 12px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .report-table thead {
+    background-color: #388E3C; /* A rich, leafy green */
+    color: #ffffff;
+  }
+
+  .report-table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .report-table tbody tr {
+    border-bottom: 1px solid #E0E0E0;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .report-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .report-table tbody tr:hover {
+    background-color: #E8F5E9; /* Light green hover for a fresh feel */
+  }
+
+  /* Styling for amount and names */
+  .total-amount {
+    font-weight: 600;
+    color: #1B5E20;
+  }
+  .user-name, .farmer-name {
+    font-weight: 500;
+  }
+
+  /* Status Badges for Payment Status */
+  .status-badge {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: capitalize;
+    display: inline-block;
+    min-width: 60px; /* Ensures badges have a similar width */
+    text-align: center;
+  }
+
+  .status-paid { background-color: #27ae60; } /* Green */
+  .status-pending { background-color: #f39c12; } /* Orange */
+  .status-failed { background-color: #e74c3c; } /* Red */
+  .status-shipped { background-color: #3498db; } /* Blue */
+  .status-delivered { background-color: #8e44ad; } /* Purple */
+  /* Add more statuses as needed */
+  .status-default { background-color: #7f8c8d; } /* Grey for others */
+
+</style>
+
+<div class="container">
+  <h2 class="page-title">Order Report</h2>
+
+  <div class="table-wrapper">
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th>Order Date</th>
+          <th>User</th>
+          <th>Farmer</th>
+          <th>Total Amount</th>
+          <th>Payment Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in reports %}
+          <tr>
+            <td>{{ order.date }}</td>
+            <td class="user-name">{{ order.user.name }}</td>
+            <td class="farmer-name">{{ order.farmer.name }}</td>
+            <td class="total-amount">
+              {% with order.payment_set.first as pay %}
+                {% if pay %}
+                    ₹ {{ pay.totalamount }}
+                {% else %}
+                    N/A
+                {% endif %}
+              {% endwith %}
+            </td>
+            <td>
+              {% with order.payment_set.first as pay %}
+                 {% if pay %}
+                    <span class="status-badge status-{{ pay.status|lower }}">{{ pay.status }}</span>
+                 {% else %}
+                    <span class="status-badge status-default">Unknown</span>
+                 {% endif %}
+              {% endwith %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5" style="text-align:center; padding: 20px;">No orders found in the report.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

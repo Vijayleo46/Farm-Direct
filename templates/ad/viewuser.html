@@ -1,0 +1,66 @@
+{% include 'ad/adminheader.html' %}
+<h2 style="text-align:center; margin:20px 0;">All Registered Users</h2>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped text-center align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Place</th>
+        <th>Post</th>
+        <th>Pin</th>
+        <th>District</th>
+        <th>Dob</th>
+        <th>Gender</th>
+        <th>Photo</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.place }}</td>
+        <td>{{ user.post }}</td>
+        <td>{{ user.pin }}</td>
+        <td>{{ user.district }}</td>
+        <td>{{ user.dob }}</td>
+        <td>{{ user.gender }}</td>
+        <td>
+          <img src="/static/media/{{ user.photo }}" alt="User Photo" width="70" height="70" style="object-fit:cover; border-radius:8px;">
+        </td>
+
+        <!-- Status Badge -->
+        <td>
+          {% if user.status == 'accepted' %}
+            <span class="badge bg-success">{{ user.status }}</span>
+          {% elif user.status == 'rejected' %}
+            <span class="badge bg-danger">{{ user.status }}</span>
+          {% else %}
+            <span class="badge bg-secondary">Pending</span>
+          {% endif %}
+        </td>
+
+        <!-- Action Buttons -->
+        <td>
+          <div class="d-flex gap-2 justify-content-center">
+            {% if user.status == 'accepted' %}
+              <a href="/rejected/{{ user.id }}" class="btn btn-outline-danger btn-sm">Reject</a>
+            {% elif user.status == 'rejected' %}
+              <a href="/saccepted/{{ user.id }}" class="btn btn-outline-success btn-sm">Accept</a>
+            {% else %}
+              <a href="/saccepted/{{ user.id }}" class="btn btn-success btn-sm">Accept</a>
+              <a href="/rejected/{{ user.id }}" class="btn btn-danger btn-sm">Reject</a>
+            {% endif %}
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
