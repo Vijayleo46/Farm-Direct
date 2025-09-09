@@ -1,1 +1,1 @@
-gunicorn Farm_Direct.farm.wsgi
+gunicorn farm.wsgi:application
