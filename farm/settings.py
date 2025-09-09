@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-gmp$(7l**@=42)m6ybn+5+nw(nf#+l-b9*2x$2q5e*25u3(*8s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['your-app-name.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['.onrender.com', 'localhost']
 
 
 
@@ -116,7 +116,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # For Whitenoise to compress and cache static files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
