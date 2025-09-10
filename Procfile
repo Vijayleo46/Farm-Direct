@@ -1,1 +1,1 @@
-gunicorn farm.wsgi:application --bind 0.0.0.0:$PORT
+gunicorn Farm_Direct.wsgi
