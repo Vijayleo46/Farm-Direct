@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% include 'ad/adminheader.html' %}
 <h2 style="text-align:center; margin:20px 0;">All Registered Users</h2>
 
@@ -64,3 +65,42 @@
     </tbody>
   </table>
 </div>
+=======
+{% include 'adminheader.html' %}
+<h2>All Registered Users</h2>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Place</th>
+    <th>Post</th>
+    <th>Pin</th>
+    <th>District</th>
+    <th>Dob</th>
+    <th>Gender</th>
+    <th>Photo</th>
+
+  </tr>
+  {% for user in users %}
+  <tr>
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.phone }}</td>
+    <td>{{ user.place }}</td>
+    <td>{{ user.post }}</td>
+    <td>{{ user.pin }}</td>
+    <td>{{ user.district }}</td>
+    <td>{{ user.dob }}</td>
+    <td>{{ user.gender  }}</td>
+<td><img src="/static/media/{{user.photo}}" alt=""></td>
+
+
+
+
+
+  </tr>
+  {% endfor %}
+</table>
+{% include 'footer.html' %}
+>>>>>>> 3528a25 (Add requirements.txt)

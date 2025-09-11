@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% include 'ad/adminheader.html' %}
 
 <style>
@@ -142,3 +143,39 @@
     </table>
   </div>
 </div>
+=======
+{% include 'adminheader.html' %}
+
+<h2 style="text-align: center;">Product Ratings</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="width: 90%; margin: auto; text-align: center;">
+  <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th>Product</th>
+      <th>User</th>
+      <th>Rating</th>
+      <th>Feedback</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in ratings %}
+      <tr>
+        <td>{{ r.product.productname }}</td>
+        <td>{{ r.user.name }}</td>
+        <td>
+          {% for i in "12345"|slice:":r.rating"|make_list %}
+            
+          {% endfor %}
+          ({{ r.rating }}/5)
+        </td>
+        <td>{{ r.feedback }}</td>
+        <td>{{ r.date }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No ratings found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include 'footer.html' %}
+>>>>>>> 3528a25 (Add requirements.txt)

@@ -4,6 +4,7 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
+<<<<<<< HEAD
     path('home',views.home),
     path('user',views.user),
     path('loqout/',views.logout1),
@@ -31,10 +32,36 @@ urlpatterns = [
     path('blockfarmer/<id>/', views.blockfarmer),
     path('unblockfarmer/<id>/', views.unblockfarmer),
     path('staff', views.verifydeliverystaff),
+=======
+    path('',views.home),
+    path('login/',views.user),
+
+    path('adminhome/',views.adminhome),
+    path('ad/viewuser/',views.viewusers),
+    path('ad/viewreport/', views.viewreport),
+    path('ad/viewfeedback/', views.viewfeedback),
+    path('ad/viewrating/',views.viewrating),
+    path('ad/viewrating/',views.viewrating),
+    path('ad/viewcomplaints/',views.viewcomplaints),
+    path('ad/verifyuser/', views.verifyusers),
+    path('uaccepted/<id>/', views.acceptuser),
+    path('urejected/<id>/', views.rejectuser),
+    path('ad/verifydstaff/', views.verifydelivery),
+    path('acceptdelivery/<id>/', views.acceptdelivery),
+    path('rejectdelivery/<id>/', views.rejectdelivery),
+    path('ad/usercheck/', views.usercheck),
+    path('blocked/<int:id>/', views.blockdelivery),
+    path('unblocked/<int:id>/', views.unblockdelivery),
+    path('ad/farmercheck/', views.verifyfarmers),
+    path('blockfarmer/<id>/', views.blockfarmer),
+    path('unblockfarmer/<id>/', views.unblockfarmer),
+    path('ad/staff', views.verifydeliverystaff),
+>>>>>>> 3528a25 (Add requirements.txt)
     path('blockdeliverystaff/<id>/', views.blockdeliverystaff),
     path('unblockdeliverystaff/<id>/', views.unblockdeliverystaff),
     # path('sendreview/', views.sendreview),
     # path('sendusercomplaint/', views.sendusercomplaint),
+<<<<<<< HEAD
     path('user_chat_with_farmer', views.usendchattofamers),
     # path('edituserprofile/<user_id>/', views.edituserprofile),
     # path('chat_with_delivery/<delivery_login_id>/', views.user_chat_with_delivery),
@@ -54,17 +81,37 @@ urlpatterns = [
     path('viewsingleproduct',views.viewineprod),
     path('farmerverify',views.farmerverify),
     path('updateuserprofilee',views.updateuserprofile),
+=======
+    path('user_chat_with_farmer/', views.user_chat_with_farmer,name='user_chat_with_farmer'),
+    # path('edituserprofile/<user_id>/', views.edituserprofile),
+    # path('chat_with_delivery/<delivery_login_id>/', views.user_chat_with_delivery),
+    path('userregister/', views.userregistration, name='userregistration'),
+    path('api/login',views.applogin,name='userlogin'),
+    path('register/',views.register),
+    path('text',views.text),
+    path('sendfeed',views.send_feedback),
+    path('viewfeed',views.view_feedback),
+    path('farmerprofile',views.farmerregister),
+    path('profregfar',views.profregfar),
+    path('managestaff',views.managestaff),
+    path('chatwithus',views.chatwithus),
+>>>>>>> 3528a25 (Add requirements.txt)
     path('manageprofile',views.manageuser),
     path('deliverystaffregister',views.deliverystaffregister),
     path('products',views.productes),
     path('manageproduct',views.manageproduct),
     path('deleteprod',views.deleteprod),
+<<<<<<< HEAD
     path('viewcomplaint',views.viewcomplaint),
+=======
+    path('api/viewcomplaint',views.viewcomplaint),
+>>>>>>> 3528a25 (Add requirements.txt)
     path('viewchat',views.viewwchattt),
     path('viewuser',views.viewuser),
     path('viewfarmer',views.viewfarmer),
     path('viewdeliverystaff',views.viewdeliverystaff),
     path('viewproduct',views.viewproduct),
+<<<<<<< HEAD
     path('viewcart',views.viewcart),
     path('viewfeedbackfar',views.view_feedbackfar),
     path('viewwassign',views.viewwassign),
@@ -108,4 +155,12 @@ urlpatterns = [
 
     path('sendcomplaintsuser',views.sendcomplaintsuser),
     path('viewcomplaintsuserrr',views.viewcomplaintsuserrr),
+=======
+    path('viewfeedbackfar',views.view_feedbackfar),
+    path('viewwassign',views.viewwassign),
+    path('assign',views.assignorder),
+    path('changepassword',views.change_password),
+    path('sendcomplaints',views.sendcomplaint),
+    path('api/urlname',views.fluttertodjango),
+>>>>>>> 3528a25 (Add requirements.txt)
 ]

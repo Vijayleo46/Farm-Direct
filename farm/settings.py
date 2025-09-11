@@ -13,8 +13,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+<<<<<<< HEAD
 import dj_database_url
 
+=======
+>>>>>>> 3528a25 (Add requirements.txt)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,8 +31,12 @@ SECRET_KEY = 'django-insecure-gmp$(7l**@=42)m6ybn+5+nw(nf#+l-b9*2x$2q5e*25u3(*8s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['your-app-name.onrender.com', 'localhost']
 
+=======
+ALLOWED_HOSTS = ['*']
+>>>>>>> 3528a25 (Add requirements.txt)
 
 
 # Application definition
@@ -48,7 +55,10 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+<<<<<<< HEAD
     'whitenoise.middleware.WhiteNoiseMiddleware',
+=======
+>>>>>>> 3528a25 (Add requirements.txt)
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -78,7 +88,21 @@ WSGI_APPLICATION = 'farm.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+<<<<<<< HEAD
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
+=======
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'farm_direct',
+        'USER':'root',
+        'PASSWORD':'',
+        'PORT':3306,
+        'HOST':'localhost',
+    }
+}
+>>>>>>> 3528a25 (Add requirements.txt)
 
 
 # Password validation
@@ -116,10 +140,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # For Whitenoise to compress and cache static files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+=======
+>>>>>>> 3528a25 (Add requirements.txt)
 
 STATICFILES_DIRS = [BASE_DIR, 'static']
 

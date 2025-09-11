@@ -6,7 +6,11 @@ from django.contrib.auth.models import User as Person
 
 class Login(models.Model):
     user = models.OneToOneField(Person, on_delete=models.CASCADE)
+<<<<<<< HEAD
     usertype = models.CharField(max_length=20)
+=======
+    usertype = models.CharField(max_length=20)  # user/farmer/deliverystaff/admin
+>>>>>>> 3528a25 (Add requirements.txt)
 
     def __str__(self):
         return self.user.username
@@ -24,7 +28,10 @@ class UserTable(models.Model):
     dob = models.DateField()
     gender = models.CharField(max_length=10)
     photo = models.ImageField(upload_to='user_photos/')
+<<<<<<< HEAD
     status = models.CharField(max_length=50)
+=======
+>>>>>>> 3528a25 (Add requirements.txt)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
 
@@ -35,7 +42,11 @@ class FarmerTable(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=15)
     photo = models.ImageField(upload_to='farmer_photos/')
+<<<<<<< HEAD
     dob = models.CharField(max_length=100)
+=======
+    dob = models.DateField()
+>>>>>>> 3528a25 (Add requirements.txt)
     gender = models.CharField(max_length=10)
     place = models.CharField(max_length=100)
     post = models.CharField(max_length=100)
@@ -43,8 +54,11 @@ class FarmerTable(models.Model):
     district = models.CharField(max_length=100)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
+<<<<<<< HEAD
     status = models.CharField(max_length=50)
 
+=======
+>>>>>>> 3528a25 (Add requirements.txt)
 
 
 class DeliveryStaff(models.Model):
@@ -61,8 +75,11 @@ class DeliveryStaff(models.Model):
     drivinglicense = models.CharField(max_length=50)
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
+<<<<<<< HEAD
     status = models.CharField(max_length=50)
 
+=======
+>>>>>>> 3528a25 (Add requirements.txt)
 
 
 class ProductTable(models.Model):
@@ -79,6 +96,7 @@ class ComplaintTable(models.Model):
     complaints = models.TextField()
     reply = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=50)
+<<<<<<< HEAD
     STATUS_CHOICES = [
         ('pending', 'Pending'),
         ('accepted', 'Accepted'),
@@ -86,6 +104,8 @@ class ComplaintTable(models.Model):
         ('replied', 'Replied'),
     ]
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+=======
+>>>>>>> 3528a25 (Add requirements.txt)
 
 
 class Feedback(models.Model):

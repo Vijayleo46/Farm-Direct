@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 {% include 'ad/adminheader.html' %}
 
 <h2 class="text-center my-4 text-success fw-bold">🌱 Verify Users</h2>
 
+=======
+{% include 'adminheader.html' %}
+<h2 style="text-align:center;">Verify Users</h2>
+>>>>>>> 3528a25 (Add requirements.txt)
 <div class="container my-5">
   <div class="row g-4">
     {% for i in users %}
     <div class="col-md-6 col-lg-4">
+<<<<<<< HEAD
       <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
         
         <!-- User Photo -->
@@ -38,6 +44,31 @@
             <a href="/urejected/{{i.id}}" class="btn btn-danger w-50 rounded-pill shadow-sm">Reject</a>
             {% endif %}
           </div>
+=======
+      <div class="card p-3 shadow">
+        <h5>{{ i.name }}</h5>
+        <p><strong>Place:</strong> {{ i.place }}</p>
+        <p><strong>Phone:</strong> {{ i.phone }}</p>
+        <p><strong>Email:</strong> {{ i.email }}</p>
+          <p class="mb-3">
+              <strong>Status:</strong>
+              {% if i.status == 'accepted' %}
+                <span class="badge bg-success">{{ i.status }}</span>
+              {% elif i.status == 'rejected' %}
+                <span class="badge bg-danger">{{ i.status }}</span>
+              {% else %}
+                <span class="badge bg-secondary">Pending</span>
+              {% endif %}
+            </p>
+        <p><strong>Status:</strong></p>
+        <div class="d-flex gap-2">
+          {% if i.status != 'accepted' %}
+          <a href="/uaccepted/{{i.id}}" class="btn btn-success btn-sm w-100">Accept</a>
+          {% endif %}
+          {% if i.status != 'rejected' %}
+          <a href="/urejected/{{i.id}}"class="btn btn-danger btn-sm w-100">Reject</a>
+          {% endif %}
+>>>>>>> 3528a25 (Add requirements.txt)
         </div>
       </div>
     </div>
@@ -45,3 +76,7 @@
   </div>
 </div>
 
+<<<<<<< HEAD
+=======
+  {% include 'footer.html' %}
+>>>>>>> 3528a25 (Add requirements.txt)

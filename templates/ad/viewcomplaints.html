@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% include 'ad/adminheader.html' %}
 
 <style>
@@ -178,3 +179,42 @@
     </table>
   </div>
 </div>
+=======
+{% include 'adminheader.html' %}
+<h2 style="text-align:center;">All Complaints</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="width:90%; margin:auto; text-align:center;">
+  <thead style="background-color: #f2f2f2;">
+    <tr>
+      <th>Date</th>
+      <th>User</th>
+      <th>Complaint</th>
+      <th>Status</th>
+      <th>Reply</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in complaints %}
+      <tr>
+        <td>{{ c.date }}</td>
+        <td>{{ c.login.username }}</td>
+        <td>{{ c.complaints }}</td>
+        <td>{{ c.status }}</td>
+        <td>
+          {% if c.status == "Pending" %}
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="cid" value="{{ c.id }}">
+              <textarea name="reply" rows="2" cols="30" required></textarea><br>
+              <button type="submit">Send Reply</button>
+            </form>
+          {% else %}
+            {{ c.reply }}
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include 'footer.html' %}
+>>>>>>> 3528a25 (Add requirements.txt)

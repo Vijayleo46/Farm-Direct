@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% include 'ad/adminheader.html' %}
 
 <style>
@@ -154,3 +155,41 @@
     </table>
   </div>
 </div>
+=======
+{% include 'adminheader.html' %}
+<h2 style="text-align:center;">Order Report</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="width: 90%; margin: auto; text-align: center;">
+  <thead style="background-color:#f2f2f2;">
+    <tr>
+      <th>Order Date</th>
+      <th>User</th>
+      <th>Farmer</th>
+      <th>Total Amount</th>
+      <th>Payment Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in reports %}
+      <tr>
+        <td>{{ order.date }}</td>
+        <td>{{ order.user.name }}</td>
+        <td>{{ order.farmer.name }}</td>
+        <td>
+          {% with order.payment_set.first as pay %}
+            ₹ {{ pay.totalamount }} 
+          {% endwith %}
+        </td>
+        <td>
+          {% with order.payment_set.first as pay %}
+            {{ pay.status }}
+          {% endwith %}
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No orders found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% include 'footer.html' %}
+>>>>>>> 3528a25 (Add requirements.txt)
